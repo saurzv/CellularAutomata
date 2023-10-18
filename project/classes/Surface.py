@@ -1,12 +1,14 @@
 class Surface:
     def __init__(self, row: int, col: int, theta_dep: int, theta_max: int, Z: int) -> None:
-        self.row = row  # get input from user
-        self.col = col  # get input from user
-        self.theta_dep = theta_dep  # input from user
+        # input from user
+        self.row = row
+        self.col = col
+        self.theta_dep = theta_dep
         self.theta_max = theta_max
         self.Z = Z
-        self._max_height = 0
 
+        # additional properties
+        self._max_height = 0
         self._average_height = 0
         self._total_particle = 0
 
@@ -17,8 +19,8 @@ class Surface:
         return self.get_total_particle() / (self.row * self.col)
 
     def set_total_particle(self) -> None:
-        print("Setting total particle")
-        self._total_particle = self.get_total_particle() + (self.theta_dep*self.row*self.col)
+        self._total_particle = self.get_total_particle() + (self.theta_dep *
+                                                            self.row * self.col)
 
     def get_total_particle(self) -> int:
         return self._total_particle
@@ -29,5 +31,10 @@ class Surface:
     def get_max_height(self) -> int:
         return self._max_height
 
-    def get_grid(self):
+    def get_grid(self) -> list[list[int]]:
         return self._grid
+
+    def print_grid(self) -> None:
+        for row in self._grid:
+            print(row)
+        print()
