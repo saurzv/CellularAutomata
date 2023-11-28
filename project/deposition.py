@@ -3,6 +3,15 @@ from project.helper import get_random_coordinate
 
 
 def particle_deposition(surface: Surface) -> None:
+    """
+    Distributes particles on a surface grid using a random deposition algorithm.
+
+    Parameters:
+        surface (Surface): The surface object representing the grid.
+
+    Returns:
+        None
+    """
     row = surface.row
     col = surface.col
     theta_dep = surface.theta_dep

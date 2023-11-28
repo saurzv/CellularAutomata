@@ -3,6 +3,17 @@ from project.classes.Surface import Surface
 
 
 def isMobile(i: int, j: int, surface: Surface) -> tuple[int, int]:
+    """
+    Generate the function comment for the given function body in a markdown code block with the correct language syntax.
+
+    Parameters:
+    i (int): The first integer parameter.
+    j (int): The second integer parameter.
+    surface (Surface): The surface object.
+
+    Returns:
+    tuple[int, int]: A tuple containing two integers representing the result of the function.
+    """
     grid = surface.get_grid()
     row = len(grid)
     col = len(grid[0])
@@ -22,8 +33,25 @@ def isMobile(i: int, j: int, surface: Surface) -> tuple[int, int]:
 
 
 def check(theta_max: int, max_height: int) -> bool:
+    """
+    Check if theta_max is greater than max_height.
+
+    Args:
+        theta_max (int): The maximum theta value.
+        max_height (int): The maximum height value.
+
+    Returns:
+        bool: True if theta_max is greater than max_height, False otherwise.
+    """
     return theta_max > max_height
 
 
 def get_random_coordinate(row: int, col: int) -> tuple[int, int]:
+    """
+    Get a random coordinate within the given row and column range.
+
+    :param row: An integer representing the number of rows.
+    :param col: An integer representing the number of columns.
+    :return: A tuple of two integers representing the random coordinate.
+    """
     return random.randint(0, row - 1), random.randint(0, col - 1)

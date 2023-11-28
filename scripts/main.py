@@ -1,6 +1,7 @@
 from project.classes.Surface import Surface
 from project.deposition import particle_deposition
 from project.helper import check, get_random_coordinate, isMobile
+from project.generate_graph import generate_surface_graph
 
 row = int(input("Enter the number of rows: "))
 col = int(input("Enter the number of columns: "))
@@ -19,11 +20,12 @@ master_counter = 0
 while (check(theta_max, surface.get_max_height())):
     particle_deposition(surface)
 
-    for _ in range(5):  # tau_l_sq
+    for _ in range(tau*row*col):  # tau_l_sq
         # increment the master counter
         master_counter += 1
         if (master_counter % freq == 0):
-            pass
+            generate_surface_graph(
+                surface, f'surface-graph-at-{master_counter}')
 
         # take saving freq
         x, y = get_random_coordinate(row, col)
