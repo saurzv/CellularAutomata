@@ -1,18 +1,18 @@
 class Surface:
     def __init__(self, row: int, col: int, theta_dep: int, theta_max: int, Z: int) -> None:
         """
-        Initializes an instance of the class.
-        
+        Initializes an instance of the class Surface
+
         Args:
             row (int): The number of rows in the grid.
             col (int): The number of columns in the grid.
             theta_dep (int): The depth of the grid.
             theta_max (int): The maximum theta value.
             Z (int): The Z value.
-        
+
         Returns:
             None
-        
+
         Raises:
             None
         """
@@ -66,15 +66,15 @@ class Surface:
         return self._total_particle
 
     def set_max_height(self, height: int) -> None:
-    """
-    Set the maximum height of the object.
+        """
+        Set the maximum height of the object.
 
-    Args:
-        height (int): The height to set as the maximum height.
+        Args:
+            height (int): The height to set as the maximum height.
 
-    Returns:
-        None: This function does not return anything.
-    """
+        Returns:
+            None: This function does not return anything.
+        """
         self._max_height = max(self._max_height, height)
 
     def get_max_height(self) -> int:
@@ -99,10 +99,10 @@ class Surface:
         Print the grid.
 
         This function iterates over each row in the grid and prints it.
-        
+
         Parameters:
             None
-        
+
         Returns:
             None
         """
