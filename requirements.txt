@@ -1,0 +1,12 @@
+-e git+ssh://git@github.com/saurzv/CellularAutomata.git@1b8102aeaae6fd5c19a8c18e18aeed72ae69d0f7#egg=CellularAutomata
+contourpy==1.2.0
+cycler==0.12.1
+fonttools==4.45.1
+kiwisolver==1.4.5
+matplotlib==3.8.2
+numpy==1.26.2
+packaging==23.2
+Pillow==10.1.0
+pyparsing==3.1.1
+python-dateutil==2.8.2
+six==1.16.0
