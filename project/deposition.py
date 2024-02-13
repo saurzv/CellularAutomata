@@ -18,7 +18,7 @@ def particle_deposition(surface: Surface) -> None:
 
     # number of particles to be distributed in the grid per iteration
     surface.set_total_particle()
-    num_of_particles = theta_dep * row * col
+    num_of_particles = int(theta_dep * row * col)
     grid = surface.get_grid()
 
     # randomly guessing the (i,j)-coordinates and increasing the grid[i][j] by 1

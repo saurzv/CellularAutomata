@@ -1,4 +1,3 @@
--e git+ssh://git@github.com/saurzv/CellularAutomata.git@1b8102aeaae6fd5c19a8c18e18aeed72ae69d0f7#egg=CellularAutomata
 contourpy==1.2.0
 cycler==0.12.1
 fonttools==4.45.1

@@ -1,0 +1,36 @@
+Enter the number of rows: Enter the number of columns: Enter the value of theta_dep: Enter the theta_max: Enter the value of Z: Enter the value of tau: Enter the value of saving freq:          12827790 function calls in 4.386 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+   399600    1.115    0.000    1.529    0.000 /home/saurav/Desktop/CellularAutomata/project/helper.py:5(isMobile)
+  1065600    0.858    0.000    1.691    0.000 /usr/lib/python3.11/random.py:284(randrange)
+  1210280    0.581    0.000    0.769    0.000 /usr/lib/python3.11/random.py:235(_randbelow_with_getrandbits)
+        1    0.349    0.349    4.386    4.386 /home/saurav/Desktop/CellularAutomata/scripts/main.py:9(start)
+  1065600    0.331    0.000    2.022    0.000 /usr/lib/python3.11/random.py:358(randint)
+   532800    0.327    0.000    2.349    0.000 /home/saurav/Desktop/CellularAutomata/project/helper.py:49(get_random_coordinate)
+  3196800    0.180    0.000    0.180    0.000 {built-in method _operator.index}
+  1508656    0.109    0.000    0.109    0.000 {method 'getrandbits' of '_random.Random' objects}
+   144680    0.105    0.000    0.240    0.000 /usr/lib/python3.11/random.py:367(choice)
+  1306424    0.099    0.000    0.099    0.000 {built-in method builtins.len}
+      444    0.096    0.000    0.731    0.002 /home/saurav/Desktop/CellularAutomata/project/deposition.py:5(particle_deposition)
+  1210280    0.079    0.000    0.079    0.000 {method 'bit_length' of 'int' objects}
+   400045    0.048    0.000    0.048    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:104(get_grid)
+   518384    0.047    0.000    0.047    0.000 {method 'append' of 'list' objects}
+   133200    0.041    0.000    0.062    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:84(set_max_height)
+   133200    0.022    0.000    0.022    0.000 {built-in method builtins.max}
+      444    0.001    0.000    0.001    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:59(set_total_particle)
+      445    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:96(get_max_height)
+      444    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:76(get_total_particle)
+        7    0.000    0.000    0.000    0.000 {built-in method builtins.input}
+      445    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/helper.py:35(check)
+        1    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:48(<listcomp>)
+        1    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:39(get_input)
+        1    0.000    0.000    0.000    0.000 /usr/lib/python3.11/cProfile.py:118(__exit__)
+        2    0.000    0.000    0.000    0.000 <frozen codecs>:319(decode)
+        1    0.000    0.000    0.000    0.000 /home/saurav/Desktop/CellularAutomata/project/classes/Surface.py:8(__init__)
+        2    0.000    0.000    0.000    0.000 <frozen codecs>:331(getstate)
+        2    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+

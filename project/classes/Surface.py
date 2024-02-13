@@ -1,5 +1,11 @@
+import numpy as np
+
+
 class Surface:
-    def __init__(self, row: int, col: int, theta_dep: int, theta_max: int, Z: int) -> None:
+    _grid = [[]]
+    grid = np.array(_grid, dtype=int)
+
+    def __init__(self) -> None:
         """
         Initializes an instance of the class Surface
 
@@ -17,19 +23,29 @@ class Surface:
             None
         """
         # input from user
-        self.row = row
-        self.col = col
-        self.theta_dep = theta_dep
-        self.theta_max = theta_max
-        self.Z = Z
+        self.row = 0
+        self.col = 0
+        self.theta_dep = 0.0
+        self.theta_max = 0
+        self.Z = 0
+        self.tau = 0.0
+        self.freq = 0
 
         # additional properties
         self._max_height = 0
         self._average_height = 0
         self._total_particle = 0
 
-        # initialize the grid
-        self._grid = [[0 for _ in range(col)] for _ in range(row)]
+    def get_input(self):
+        self.row = int(input("Enter the number of rows: "))
+        self.col = int(input("Enter the number of columns: "))
+        self.theta_dep = float(input("Enter the value of theta_dep: "))
+        self.theta_max = int(input("Enter the theta_max: "))     # Max height
+        self.Z = int(input("Enter the value of Z: "))
+        self.tau = float(input("Enter the value of tau: "))
+        self.freq = int(input("Enter the value of saving freq: "))
+
+        self.grid = [[0 for _ in range(self.col)] for _ in range(self.row)]
 
     def get_average_height(self) -> float:
         """
@@ -54,8 +70,8 @@ class Surface:
         Returns:
         - None
         """
-        self._total_particle = self.get_total_particle() + (self.theta_dep *
-                                                            self.row * self.col)
+        self._total_particle = self.get_total_particle() + 1*(self.theta_dep *
+                                                              self.row * self.col)
 
     def get_total_particle(self) -> int:
         """
@@ -92,7 +108,7 @@ class Surface:
         Returns:
             list[list[int]]: The grid.
         """
-        return self._grid
+        return self.grid
 
     def print_grid(self) -> None:
         """
@@ -106,6 +122,6 @@ class Surface:
         Returns:
             None
         """
-        for row in self._grid:
+        for row in self.grid:
             print(row)
         print()
