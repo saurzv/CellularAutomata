@@ -55,3 +55,6 @@ def get_random_coordinate(row: int, col: int) -> tuple[int, int]:
     :return: A tuple of two integers representing the random coordinate.
     """
     return random.randint(0, row - 1), random.randint(0, col - 1)
+
+# write function to calc std deviation of 2d np array
+# make graph of roughness vs no iterations (time)

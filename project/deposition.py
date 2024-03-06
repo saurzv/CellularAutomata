@@ -28,3 +28,5 @@ def particle_deposition(surface: Surface) -> None:
         i, j = get_random_coordinate(row, col)
         grid[i][j] += 1
         surface.set_max_height(grid[i][j])
+
+    surface.grid = grid

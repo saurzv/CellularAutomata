@@ -1,13 +1,14 @@
 from project.classes.Surface import Surface
 from project.deposition import particle_deposition
 from project.helper import check, get_random_coordinate, isMobile
-from project.generate_graph import generate_surface_graph
+from project.generate_graph import generate_surface_graph, save_array
 import cProfile
 import pstats
 
+surface = Surface()
+
 
 def start():
-    surface = Surface()
     surface.get_input()
 
     row = surface.row
@@ -17,11 +18,14 @@ def start():
     freq = surface.freq
     # Z = surface.Z
     tau = surface.tau
-    grid = surface.get_grid()
 
     master_counter = 0
     while (check(theta_max, surface.get_max_height())):
         particle_deposition(surface)
+        grid = surface.get_grid()
+        print(grid)
+        # yahi pe save karna hai bin file ko
+        save_array(surface, f'surface-at-{master_counter}')
 
         for _ in range(int(tau*row*col)):  # tau_l_sq
             # increment the master counter
@@ -43,12 +47,13 @@ def start():
                 grid[xx][yy] += 1
                 # surface.print_grid()
 
-    surface.grid = grid
+        surface.grid = grid
 
 
 if __name__ == "__main__":
     with cProfile.Profile() as pr:
         start()
+        generate_surface_graph(surface, 'results/')
 
     results = pstats.Stats(pr)
     results.sort_stats(pstats.SortKey.TIME)

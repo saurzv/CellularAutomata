@@ -45,7 +45,8 @@ class Surface:
         self.tau = float(input("Enter the value of tau: "))
         self.freq = int(input("Enter the value of saving freq: "))
 
-        self.grid = [[0 for _ in range(self.col)] for _ in range(self.row)]
+        self._grid = [[0 for _ in range(self.col)] for _ in range(self.row)]
+        self.grid = np.array(self._grid, dtype=int)
 
     def get_average_height(self) -> float:
         """
@@ -101,7 +102,7 @@ class Surface:
         """
         return self._max_height
 
-    def get_grid(self) -> list[list[int]]:
+    def get_grid(self):
         """
         Get the grid.
 
