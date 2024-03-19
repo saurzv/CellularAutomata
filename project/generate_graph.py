@@ -48,8 +48,7 @@ def generate_surface_graph(surface, dirPath):
     cnt = 0
     std_dev = []
     for file in glob.glob(f'{dirPath}/*.bin'):
-        arr = np.fromfile(file, dtype=np.int64).reshape(
-            (surface.row, surface.col))
+        arr = np.fromfile(file, dtype=np.int32).reshape((surface.row, surface.col))
         print(arr)
         std_dev.append(np.std(arr))
         # x, y = np.meshgrid(np.arange(arr.shape[1]), np.arange(arr.shape[0]))

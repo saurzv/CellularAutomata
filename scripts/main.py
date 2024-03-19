@@ -4,6 +4,8 @@ from project.helper import check, get_random_coordinate, isMobile
 from project.generate_graph import generate_surface_graph, save_array
 import cProfile
 import pstats
+import numpy as np
+import matplotlib.pyplot as plt
 
 surface = Surface()
 
@@ -19,11 +21,19 @@ def start():
     # Z = surface.Z
     tau = surface.tau
 
+    test_arr = []
+
+
     master_counter = 0
     while (check(theta_max, surface.get_max_height())):
         particle_deposition(surface)
         grid = surface.get_grid()
         print(grid)
+
+
+        test_arr.append(np.std(grid))
+
+        
         # yahi pe save karna hai bin file ko
         save_array(surface, f'surface-at-{master_counter}')
 
@@ -48,12 +58,15 @@ def start():
                 # surface.print_grid()
 
         surface.grid = grid
+    print(test_arr)
+    plt.plot(test_arr)
+    plt.savefig(f'graph/roughness.png')
 
 
 if __name__ == "__main__":
     with cProfile.Profile() as pr:
         start()
-        generate_surface_graph(surface, 'results/')
+        # generate_surface_graph(surface, 'results/')
 
     results = pstats.Stats(pr)
     results.sort_stats(pstats.SortKey.TIME)
