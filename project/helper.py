@@ -1,8 +1,8 @@
 import random
-from project.classes.Surface import Surface
+from project.classes.config import surface
 
 
-def isMobile(i: int, j: int, surface: Surface) -> tuple[int, int]:
+def isMobile(i: int, j: int) -> tuple[int, int]:
     """
     Generate the function comment for the given function body in a markdown code block with the correct language syntax.
 
@@ -14,18 +14,17 @@ def isMobile(i: int, j: int, surface: Surface) -> tuple[int, int]:
     Returns:
     tuple[int, int]: A tuple containing two integers representing the result of the function.
     """
-    grid = surface.get_grid()
-    row = len(grid)
-    col = len(grid[0])
+    row = len(surface.grid)
+    col = len(surface.grid[0])
     neighbors = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     Ni = 0
     choices = []
 
     for dx, dy in neighbors:
         ni, nj = (i + dx) % row, (j + dy) % col
-        if grid[i][j] == grid[ni][nj]:
+        if surface.grid[i][j] == surface.grid[ni][nj]:
             Ni += 1
-        elif grid[i][j] > grid[ni][nj]:
+        elif surface.grid[i][j] > surface.grid[ni][nj]:
             choices.append((ni, nj))
 
     Z = surface.Z

@@ -5,7 +5,7 @@ class Surface:
     _grid = [[]]
     grid = np.array(_grid, dtype=int)
 
-    def __init__(self) -> None:
+    def __init__(self, row: int, col: int, theta_dep: float, theta_max: int, Z: int, tau: float, freq: int) -> None:
         """
         Initializes an instance of the class Surface
 
@@ -23,30 +23,16 @@ class Surface:
             None
         """
         # input from user
-        self.row = 0
-        self.col = 0
-        self.theta_dep = 0.0
-        self.theta_max = 0
-        self.Z = 0
-        self.tau = 0.0
-        self.freq = 0
-
-        # additional properties
-        self._max_height = 0
-        self._average_height = 0
+        self.row = row
+        self.col = col
+        self.theta_dep = theta_dep
+        self.theta_max = theta_max
+        self.Z = Z
+        self.tau = tau
+        self.freq = freq
         self._total_particle = 0
-
-    def get_input(self):
-        self.row = int(input("Enter the number of rows: "))
-        self.col = int(input("Enter the number of columns: "))
-        self.theta_dep = float(input("Enter the value of theta_dep: "))
-        self.theta_max = int(input("Enter the theta_max: "))     # Max height
-        self.Z = int(input("Enter the value of Z: "))
-        self.tau = float(input("Enter the value of tau: "))
-        self.freq = int(input("Enter the value of saving freq: "))
-
-        self._grid = [[0 for _ in range(self.col)] for _ in range(self.row)]
-        self.grid = np.array(self._grid, dtype=int)
+        self._max_height = 0
+        self.grid = np.zeros((self.row, self.col), dtype=int)
 
     def get_average_height(self) -> float:
         """
@@ -101,15 +87,6 @@ class Surface:
         :return: An integer representing the maximum height.
         """
         return self._max_height
-
-    def get_grid(self):
-        """
-        Get the grid.
-
-        Returns:
-            list[list[int]]: The grid.
-        """
-        return self.grid
 
     def print_grid(self) -> None:
         """

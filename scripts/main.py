@@ -1,4 +1,4 @@
-from project.classes.Surface import Surface
+from project.classes.config import surface, roughness_array
 from project.deposition import particle_deposition
 from project.helper import check, get_random_coordinate, isMobile
 from project.generate_graph import generate_surface_graph, save_array
@@ -7,12 +7,8 @@ import pstats
 import numpy as np
 import matplotlib.pyplot as plt
 
-surface = Surface()
-
 
 def start():
-    surface.get_input()
-
     row = surface.row
     col = surface.col
     # theta_dep = surface.theta_dep
@@ -21,21 +17,13 @@ def start():
     # Z = surface.Z
     tau = surface.tau
 
-    test_arr = []
-
-
     master_counter = 0
     while (check(theta_max, surface.get_max_height())):
-        particle_deposition(surface)
-        grid = surface.get_grid()
-        print(grid)
+        particle_deposition()
+        roughness_array.append(np.std(surface.grid))
 
-
-        test_arr.append(np.std(grid))
-
-        
         # yahi pe save karna hai bin file ko
-        save_array(surface, f'surface-at-{master_counter}')
+        # save_array(surface, f'surface-at-{master_counter}')
 
         for _ in range(int(tau*row*col)):  # tau_l_sq
             # increment the master counter
@@ -46,21 +34,19 @@ def start():
 
             # take saving freq
             x, y = get_random_coordinate(row, col)
-            xx, yy = isMobile(x, y, surface)
+            xx, yy = isMobile(x, y)
             # print(xx, yy)
             # grid = surface.get_grid()
             if xx != -1:
                 # print(x, y)
                 # print(xx, yy)
                 # surface.print_grid()
-                grid[x][y] -= 1
-                grid[xx][yy] += 1
+                surface.grid[x][y] -= 1
+                surface.grid[xx][yy] += 1
                 # surface.print_grid()
 
-        surface.grid = grid
-    print(test_arr)
-    plt.plot(test_arr)
-    plt.savefig(f'graph/roughness.png')
+    plt.plot(roughness_array)
+    plt.savefig(f'graph/roughness-1.png')
 
 
 if __name__ == "__main__":
