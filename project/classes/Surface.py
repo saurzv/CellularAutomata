@@ -103,3 +103,6 @@ class Surface:
         for row in self.grid:
             print(row)
         print()
+
+    def get_name(self) -> str:
+        return f'surface-{self.row},{self.col},{self.theta_dep},{self.theta_max},{self.Z},{self.tau},{self.freq}'

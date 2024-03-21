@@ -20,17 +20,6 @@ def get_value_at_coordinate(matrix, x, y):
     return matrix[x, y]
 
 
-def save_array(surface, name):
-    grid = surface.get_grid()
-    print(grid)
-    print(surface.get_total_particle())
-    # print(type(grid))
-    # print('saving to file')
-    grid.tofile(f'results/{name}.bin')
-    # arr = np.fromfile(
-    #     f'results/{name}.bin', dtype=np.int64).reshape((surface.row, surface.col))
-
-
 def generate_surface_graph(surface, dirPath):
     """
     Generate a surface graph based on the given surface and name.
@@ -48,7 +37,8 @@ def generate_surface_graph(surface, dirPath):
     cnt = 0
     std_dev = []
     for file in glob.glob(f'{dirPath}/*.bin'):
-        arr = np.fromfile(file, dtype=np.int32).reshape((surface.row, surface.col))
+        arr = np.fromfile(file, dtype=np.int32).reshape(
+            (surface.row, surface.col))
         print(arr)
         std_dev.append(np.std(arr))
         # x, y = np.meshgrid(np.arange(arr.shape[1]), np.arange(arr.shape[0]))

@@ -177,3 +177,5 @@ pyrightconfig.json
 
 .vscode
 *.bin
+graph/
+grids/
