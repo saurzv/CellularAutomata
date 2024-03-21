@@ -1,0 +1,2 @@
+- [ ] Save roughness data in a csv file
+- [ ] Refactor the code
