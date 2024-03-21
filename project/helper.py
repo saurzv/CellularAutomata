@@ -18,8 +18,8 @@ def isMobile(i: int, j: int) -> tuple[int, int]:
     col = surface.col
     neighbors = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     Ni = 0
-    choices = [(i+dx, j+dy) for dx, dy in neighbors if (i+dx) % row != i and (j+dy) %
-               col != j and surface.grid[i][j] > surface.grid[i+dx][j+dy]]
+    choices = [((i+dx) % row, (j+dy) % col) for dx, dy in neighbors if surface.grid[i]
+               [j] > surface.grid[(i+dx) % row][(j+dy) % col]]
 
     # for dx, dy in neighbors:
     #     ni, nj = (i + dx) % row, (j + dy) % col
