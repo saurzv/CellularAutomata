@@ -14,21 +14,32 @@ def isMobile(i: int, j: int) -> tuple[int, int]:
     Returns:
     tuple[int, int]: A tuple containing two integers representing the result of the function.
     """
-    row = len(surface.grid)
-    col = len(surface.grid[0])
+    row = surface.row
+    col = surface.col
     neighbors = [(-1, 0), (1, 0), (0, -1), (0, 1)]
     Ni = 0
-    choices = []
+    choices = [(i+dx, j+dy) for dx, dy in neighbors if (i+dx) % row != i and (j+dy) %
+               col != j and surface.grid[i][j] > surface.grid[i+dx][j+dy]]
 
-    for dx, dy in neighbors:
-        ni, nj = (i + dx) % row, (j + dy) % col
+    # for dx, dy in neighbors:
+    #     ni, nj = (i + dx) % row, (j + dy) % col
+    #     if surface.grid[i][j] == surface.grid[ni][nj]:
+    #         Ni += 1
+    #         if Ni >= surface.Z:
+    #             return [-1, -1]
+    #     elif surface.grid[i][j] > surface.grid[ni][nj]:
+    #         choices.append((ni, nj))
+
+    # Z = surface.Z
+    # return random.choice(choices) if (Ni < Z and len(choices) > 0) else [-1, -1]
+
+    for ni, nj in choices:
         if surface.grid[i][j] == surface.grid[ni][nj]:
             Ni += 1
-        elif surface.grid[i][j] > surface.grid[ni][nj]:
-            choices.append((ni, nj))
+            if Ni >= surface.Z:
+                return [-1, -1]
 
-    Z = surface.Z
-    return random.choice(choices) if (Ni < Z and len(choices) > 0) else [-1, -1]
+    return random.choice(choices) if len(choices) > 0 else [-1, -1]
 
 
 def check(theta_max: int, max_height: int) -> bool:
