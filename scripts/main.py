@@ -1,13 +1,14 @@
 from project.classes.config import surface, roughness_array
 from project.deposition import particle_deposition
-from project.helper import check, get_random_coordinate, isMobile
-from project.generate_graph import generate_surface_graph
+from project.helper import check, get_random_coordinate, isMobile, save_grid, save_csv
+from project.generate_graph import generate_surface_graph, generate_graph
 import cProfile
 import pstats
 import numpy as np
 import matplotlib.pyplot as plt
 import time
 import os
+import asyncio
 
 strt = time.time()
 
@@ -27,9 +28,8 @@ def start():
         particle_deposition()
         roughness_array.append(np.std(surface.grid))
 
-        # yahi pe save karna hai bin file ko
-        # save_array(surface, f'surface-at-{master_counter}')
-        # save_grid(f'{name}-{strt}-{master_counter}')
+        # asyncio.run(save_grid(surface.grid))
+        # generate_graph(master_counter, surface.grid)
 
         for _ in range(int(tau*row*col)):  # tau_l_sq
             # increment the master counter
@@ -55,12 +55,13 @@ def start():
     if os.path.exists('graph') == False:
         os.mkdir('graph')
     plt.savefig(f'graph/{name}-{strt}.png')
+    save_csv(roughness_array)
 
 
 if __name__ == "__main__":
     with cProfile.Profile() as pr:
         start()
-        # generate_surface_graph(surface, 'results/')
+        # generate_surface_graph('grids')
 
     results = pstats.Stats(pr)
     if os.path.exists('results') == False:

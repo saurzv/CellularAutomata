@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 from mpl_toolkits.mplot3d import Axes3D
 import glob
+from project.helper import load_grid
+from project.classes.config import surface
 
 
 def get_value_at_coordinate(matrix, x, y):
@@ -20,59 +22,42 @@ def get_value_at_coordinate(matrix, x, y):
     return matrix[x, y]
 
 
-def generate_surface_graph(surface, dirPath):
-    """
-    Generate a surface graph based on the given surface and name.
-
-    Parameters:
-    - surface: the surface object to generate the graph from.
-    - name: the name of the graph.
-
-    Returns:
-    None
-    """
-    # arr = np.fromfile(
-    #     f'results/{name}.bin', dtype=np.int64).reshape((surface.row, surface.col))
-
+def generate_surface_graph(dirPath):
+    file_path = glob.glob(f'{dirPath}/*.npy')
     cnt = 0
-    std_dev = []
-    for file in glob.glob(f'{dirPath}/*.bin'):
-        arr = np.fromfile(file, dtype=np.int32).reshape(
-            (surface.row, surface.col))
-        print(arr)
-        std_dev.append(np.std(arr))
-        # x, y = np.meshgrid(np.arange(arr.shape[1]), np.arange(arr.shape[0]))
+    for file in file_path:
+        grid = load_grid(file)
+        fig = plt.figure()
+        x, y = np.meshgrid(np.arange(grid.shape[1]), np.arange(grid.shape[0]))
 
-        # x = x.flatten()
-        # y = y.flatten()
+        x = x.flatten()
+        y = y.flatten()
 
-        # z = np.zeros(arr.size)
-        # dx = dy = 0.5
-        # dz = arr.flatten()
-        # fig = plt.figure()
-        # ax = fig.add_subplot(111, projection='3d')
-        # ax.bar3d(x, y, z, dx, dy, dz, zsort='average')
-        # plt.savefig(f'graph/{cnt}.png')
-        # cnt += 1
+        z = np.zeros(grid.size)
+        dx = dy = 0.5
+        dz = grid.flatten()
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+        ax.bar3d(x, y, z, dx, dy, dz, zsort='average')
+        ax.set_zlim(0, surface.theta_max)
+        plt.savefig(f'image/{cnt}.png')
+        plt.close('all')
+        cnt += 1
 
-    print(std_dev)
-    plt.plot(std_dev)
-    plt.savefig(f'graph/roughness.png')
 
-    # matrix = np.array(grid)
-    # x = np.arange(0, matrix.shape[0], 1)
-    # y = np.arange(0, matrix.shape[1], 1)
+def generate_graph(cnt, grid):
+    fig = plt.figure()
+    x, y = np.meshgrid(np.arange(grid.shape[1]), np.arange(grid.shape[0]))
 
-    # X, Y = np.meshgrid(x, y)
+    x = x.flatten()
+    y = y.flatten()
 
-    # Z = get_value_at_coordinate(matrix, X, Y)
-
-    # fig = plt.figure()
-    # ax = plt.axes(projection='3d')
-    # my_cmap = plt.get_cmap('hot')
-
-    # surf = ax.plot_surface(X, Y, Z, cmap=my_cmap, edgecolor='none')
-
-    # fig.colorbar(surf, ax=ax, shrink=0.5, aspect=5)
-
-    # fig.savefig(f'graph/{name}.png')
+    z = np.zeros(grid.size)
+    dx = dy = 0.5
+    dz = grid.flatten()
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.bar3d(x, y, z, dx, dy, dz, zsort='average')
+    ax.set_zlim(0, surface.theta_max)
+    plt.savefig(f'graph/{cnt}.png')
+    plt.close('all')
